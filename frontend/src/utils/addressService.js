@@ -3,7 +3,7 @@ import axios from "axios";
 export const createAddress = async (address, id) => {
   try {
     const response = await axios.post(
-      `http://192.168.1.3:5000/api/addresses/${id}`,
+      `https://superbaldi-production.up.railway.app/api/addresses/${id}`,
       address
     );
     return response.data;
@@ -15,7 +15,7 @@ export const createAddress = async (address, id) => {
 export const deleteAddress = async () => {
   try {
     const response = await axios.delete(
-      `http://192.168.1.3:5000/api/addresses/${user._id}`
+      `https://superbaldi-production.up.railway.app/api/addresses/${user._id}`
     );
     return response.data;
   } catch (err) {
@@ -26,7 +26,7 @@ export const deleteAddress = async () => {
 export const getAddresses = async (id) => {
   try {
     const response = await axios.get(
-      `http://192.168.1.3:5000/api/addresses/${id}`
+      `https://superbaldi-production.up.railway.app/api/addresses/${id}`
     );
     return response.data;
   } catch (err) {

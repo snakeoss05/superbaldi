@@ -39,7 +39,7 @@ export default function Product({ params }) {
       const fetchProduct = async () => {
         try {
           const response = await axios.get(
-            `http://192.168.1.3:5000/api/products/${unwrappedParams.id}`
+            `https://superbaldi-production.up.railway.app/api/products/${unwrappedParams.id}`
           );
           setProduct(response.data.data);
           setSelectedColor(response.data.data.colors[0]);

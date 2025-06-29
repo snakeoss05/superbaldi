@@ -22,7 +22,10 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const corsOptions = {
-  origin: ["https://sohaco.netlify.app", "http://192.168.1.3:3000"],
+  origin: [
+    "https://superbaldi-production.up.railway.app",
+    "http://192.168.1.3:3000",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,

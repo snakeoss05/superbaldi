@@ -52,7 +52,7 @@ export default function AccountDetails() {
 
     try {
       const { data } = await axios.put(
-        "http://192.168.1.3:5000/api/profile/update",
+        "https://superbaldi-production.up.railway.app/api/profile/update",
         updateFields,
         {
           headers: {

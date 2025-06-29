@@ -32,7 +32,10 @@ export default function Otp({ email, setTabs }) {
     };
 
     try {
-      await axios.post("http://192.168.1.3:5000/api/auth/verify-otp", data);
+      await axios.post(
+        "https://superbaldi-production.up.railway.app/api/auth/verify-otp",
+        data
+      );
       loginAction({ email: email, password: password });
       toast.success("OTP verified successfully");
       setTabs("success");

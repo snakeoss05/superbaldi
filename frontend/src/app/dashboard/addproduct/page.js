@@ -86,7 +86,7 @@ const Product = () => {
 
     try {
       const response = await axios.post(
-        `http://192.168.1.3:5000/api/products`,
+        `https://superbaldi-production.up.railway.app/api/products`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -110,7 +110,7 @@ const Product = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.1.3:5000/api/categories"
+          "https://superbaldi-production.up.railway.app/api/categories"
         );
         setCategories(response.data.data);
         const parentCategorys = response.data.data.filter(

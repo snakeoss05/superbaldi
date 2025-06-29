@@ -14,7 +14,7 @@ const CategoryList = ({ setisOpen }) => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://192.168.1.3:5000/api/categories"
+          "https://superbaldi-production.up.railway.app/api/categories"
         );
         setCategories(response.data.data);
       } catch (error) {

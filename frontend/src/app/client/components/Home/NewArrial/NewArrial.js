@@ -16,7 +16,7 @@ export default function NewArrial() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `http://192.168.1.3:5000/api/products?page=${page}&limit=8`
+          `https://superbaldi-production.up.railway.app/api/products?page=${page}&limit=8`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);

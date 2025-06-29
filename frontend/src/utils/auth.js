@@ -1,11 +1,14 @@
 export const isAdminRole = async (id) => {
   try {
-    const response = await fetch(`http://192.168.1.3:5000/api/profile/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://superbaldi-production.up.railway.app/api/profile/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -15,12 +18,15 @@ export const isAdminRole = async (id) => {
 };
 export const getUserProfile = async (id) => {
   try {
-    const response = await fetch(`http://192.168.1.3:5000/api/profile/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://superbaldi-production.up.railway.app/api/profile/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -31,7 +37,7 @@ export const getUserProfile = async (id) => {
 export const updateUserProfile = async (id, updateData) => {
   try {
     const response = await fetch(
-      `http://192.168.1.3:5000/api/users/update/${id}`,
+      `https://superbaldi-production.up.railway.app/api/users/update/${id}`,
       {
         method: "PUT",
         headers: {

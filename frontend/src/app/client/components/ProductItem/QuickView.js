@@ -34,7 +34,7 @@ export default function QuickView() {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://192.168.1.3:5000/api/products/${id}`
+          `https://superbaldi-production.up.railway.app/api/products/${id}`
         );
         setProduct(response.data.data);
         setMainImage(response.data.data.colors[0].images[0]);

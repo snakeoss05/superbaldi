@@ -139,7 +139,7 @@ export default function Checkout() {
     };
     try {
       const response = await axios.post(
-        "http://192.168.1.3:5000/api/orders",
+        "https://superbaldi-production.up.railway.app/api/orders",
         data
       );
       if (response.status === 201) {

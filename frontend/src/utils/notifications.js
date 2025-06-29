@@ -1,7 +1,8 @@
 // api/notifications.js
 import axios from "axios";
 
-const API_BASE = "http://192.168.1.3:5000/api/notifications";
+const API_BASE =
+  "https://superbaldi-production.up.railway.app/api/notifications";
 
 export const fetchStockNotifications = async () => {
   try {

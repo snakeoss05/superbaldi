@@ -19,7 +19,7 @@ export default function RelatedProducts({ category }) {
 
       try {
         const res = await axios.get(
-          `http://192.168.1.3:5000/api/products?${queryParams.toString()}`
+          `https://superbaldi-production.up.railway.app/api/products?${queryParams.toString()}`
         );
 
         setProducts(res.data.data);

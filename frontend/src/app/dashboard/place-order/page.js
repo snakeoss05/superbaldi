@@ -41,7 +41,7 @@ export default function PlaceOrder() {
 
         try {
           const res = await axios.get(
-            `http://192.168.1.3:5000/api/users?${queryParams.toString()}`,
+            `https://superbaldi-production.up.railway.app/api/users?${queryParams.toString()}`,
             {
               withCredentials: true,
             }
@@ -66,7 +66,7 @@ export default function PlaceOrder() {
         setLoading(true);
         try {
           const res = await axios.get(
-            `http://192.168.1.3:5000/api/products/search?name=${searchTerm}`
+            `https://superbaldi-production.up.railway.app/api/products/search?name=${searchTerm}`
           );
           setFilteredProducts(res.data.data);
           setLoading(false);

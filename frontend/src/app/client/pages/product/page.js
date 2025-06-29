@@ -48,7 +48,7 @@ export default function Products() {
 
       try {
         const res = await axios.get(
-          `http://192.168.1.3:5000/api/products?${queryParams.toString()}`
+          `https://superbaldi-production.up.railway.app/api/products?${queryParams.toString()}`
         );
         setIsLoading(false);
         setProducts(res.data.data);
@@ -74,9 +74,12 @@ export default function Products() {
   ]);
 
   const handleDelete = async (id) => {
-    const res = await fetch(`http://192.168.1.3:5000/api/products/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `https://superbaldi-production.up.railway.app/api/products/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     if (res.ok) {
       setProducts(products.filter((product) => product._id !== id));

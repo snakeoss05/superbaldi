@@ -37,7 +37,7 @@ export default function BestSales() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `http://192.168.1.3:5000/api/products?page=${page}&limit=8&discount=${discount}&sortField=${sortField}&sortOrder=${sortOrder}`
+          `https://superbaldi-production.up.railway.app/api/products?page=${page}&limit=8&discount=${discount}&sortField=${sortField}&sortOrder=${sortOrder}`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);

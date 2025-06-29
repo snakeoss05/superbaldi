@@ -24,7 +24,7 @@ const Category = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "http://192.168.1.3:5000/api/categories"
+        "https://superbaldi-production.up.railway.app/api/categories"
       );
       setCategories(response.data.data);
     } catch (error) {
@@ -74,8 +74,8 @@ const Category = () => {
       }
 
       const url = editingCategory
-        ? `http://192.168.1.3:5000/api/categories/${editingCategory._id}`
-        : "http://192.168.1.3:5000/api/categories";
+        ? `https://superbaldi-production.up.railway.app/api/categories/${editingCategory._id}`
+        : "https://superbaldi-production.up.railway.app/api/categories";
 
       const method = editingCategory ? "put" : "post";
 
@@ -131,7 +131,7 @@ const Category = () => {
               toast.dismiss(t.id);
               try {
                 const response = await axios.delete(
-                  `http://192.168.1.3:5000/api/categories/${id}`,
+                  `https://superbaldi-production.up.railway.app/api/categories/${id}`,
                   {
                     withCredentials: true,
                   }

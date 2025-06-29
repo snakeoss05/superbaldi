@@ -20,7 +20,7 @@ export default function SideBar() {
         setLoading(true);
         try {
           const res = await axios.get(
-            `http://192.168.1.3:5000/api/products/search?name=${name}`
+            `https://superbaldi-production.up.railway.app/api/products/search?name=${name}`
           );
           setProducts(res.data.data);
           setLoading(false);

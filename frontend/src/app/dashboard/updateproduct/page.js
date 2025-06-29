@@ -52,21 +52,27 @@ export default function UpdateProduct() {
       for (let i = 0; i < product.images.length; i++) {
         formData.append("images", product.images[i]);
       }
-    await fetch(`http://192.168.1.3:5000/api/products/${ProductId}`, {
-      method: "PUT",
-      body: formData,
-      credentials: "include",
-    }).then((res) => {
+    await fetch(
+      `https://superbaldi-production.up.railway.app/api/products/${ProductId}`,
+      {
+        method: "PUT",
+        body: formData,
+        credentials: "include",
+      }
+    ).then((res) => {
       if (res.status === 200) {
         setEditing(false);
       }
     });
   };
   const handleDelete = async () => {
-    await fetch(`http://192.168.1.3:5000/api/products/${ProductId}`, {
-      method: "DELETE",
-      credentials: "include",
-    }).then((res) => {
+    await fetch(
+      `https://superbaldi-production.up.railway.app/api/products/${ProductId}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      }
+    ).then((res) => {
       if (res.status === 200) {
         toast.success("Product deleted successfully");
         setEditing(false);
@@ -80,7 +86,7 @@ export default function UpdateProduct() {
     }
     const fetchProduct = async () => {
       const response = await fetch(
-        `http://192.168.1.3:5000/api/products/${ProductId}`
+        `https://superbaldi-production.up.railway.app/api/products/${ProductId}`
       );
       const data = await response.json();
       if (!data.data) {
@@ -96,7 +102,7 @@ export default function UpdateProduct() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.1.3:5000/api/categories"
+          "https://superbaldi-production.up.railway.app/api/categories"
         );
         setCategories(response.data.data);
       } catch (error) {
