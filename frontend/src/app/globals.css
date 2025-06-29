@@ -1,0 +1,598 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Teko:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Dosis:wght@400;500;600;700&display=swap");
+
+:root
+{
+  --color-background: #fff;
+  --color-primary: #233a95;
+  --color-secondary: #2bbef9;
+  --color-price: #d51243;
+  --color-rating: #ffcd00;
+  --color-text: #202435;
+  --color-text-light: #3e445a;
+  --color-text-lighter: #71778e;
+  --color-light: #f7f8fd;
+  --color-lighter: #fbfcfe;
+  --color-border: #e4e5ee;
+  --color-border-dark: #d9d9e9;
+  --color-border-light: #edeef5;
+  --color-info: #c2c2d3;
+  --color-info-dark: #9b9bb4;
+  --color-info-light: #f3f3f6;
+  --color-success: #00b853;
+  --color-success-dark: #038e42;
+  --color-success-light: #e5f8ed;
+  --color-danger: #ed174a;
+  --color-danger-dark: #be143c;
+  --color-danger-light: #ffeef2;
+  --color-warning: #ff6048;
+  --color-warning-dark: #ea2b0f;
+  --color-warning-light: #ffefec;
+  --color-form-background: #f3f4f7;
+  --color-placeholder: #9595a9;
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --dark: #343a40;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --font-primary: Inter, sans-serif;
+  --font-secondary: Dosis, sans-serif;
+}
+
+body
+{
+  overflow-x: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Inter", sans-serif !important;
+}
+
+*
+{
+  font-weight: 400;
+  font-style: normal;
+}
+
+.no-scrollbar::-webkit-scrollbar
+{
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar
+{
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.noto
+{
+  font-family: "Noto Serif", serif !important;
+}
+
+.figtree
+{
+  font-family: "Figtree", sans-serif !important;
+}
+
+.montserrat
+{
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.red-light
+{
+  color: #db4444;
+}
+
+::-webkit-scrollbar
+{
+  width: 10px;
+}
+
+::-webkit-scrollbar-track
+{
+  background: aliceroyalblue;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #bebebe8e;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+  background: #2b4daa;
+}
+
+.imageSecondary
+{
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.imageSecondary button
+{
+  transform: translateY(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.card:hover .imageSecondary button
+{
+  transform: translateY(0);
+}
+
+.card:hover .imageSecondary
+{
+  opacity: 1;
+}
+
+.card:hover .imagePrimary
+{
+  opacity: 0;
+}
+
+.toggler:hover .dropdown
+{
+  width: 450px;
+}
+
+.toggler:hover .arrow
+{
+  transform: rotate(0deg);
+}
+
+@media screen and (max-width: 768px)
+{
+  .toggler:hover .dropdown
+  {
+    height: 300px;
+    width: 100%;
+  }
+}
+
+.mySwiper
+{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.mySwiper .swiper-pagination
+{
+  display: none !important;
+}
+
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev
+{
+  color: #1f1f1f !important;
+  background: #ffffff !important;
+  opacity: 0 !important;
+  transition: all 0.3s ease-in-out;
+  border-radius: 100%;
+  cursor: no-drop;
+  box-shadow: rgba(209, 209, 209, 0.31) 0px 0px 0px 2px !important;
+  width: 44px !important;
+  height: 44px !important;
+  transform: translateX(-30px) !important;
+  backface-visibility: 20% !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after
+{
+  content: "\e9d3";
+  font-size: 18px !important;
+}
+
+.mySwiper:hover .swiper-button-next,
+.mySwiper:hover .swiper-button-prev
+{
+  opacity: 0.7 !important;
+  transform: translateX(0px) !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover
+{
+  background-color: #1f1f1f !important;
+  color: #ffffff !important;
+}
+
+.swiper-testimonial .swiper-button-prev,
+.swiper-testimonial .swiper-button-next
+{
+  display: none;
+}
+
+.swiper-testimonial .swiper-pagination
+{
+  z-index: 99999 !important;
+  display: flex !important;
+  position: relative !important;
+  justify-content: center !important;
+  align-items: center !important;
+  bottom: 0 !important;
+}
+
+.swiper-testimonial
+{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+.swiper-testimonial .swiper-pagination-bullet
+{
+  background-color: transparent;
+  border: 1px solid #1f1f1f;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 8px !important;
+  width: 12px;
+  height: 12px;
+
+  transition: scale 0.45s;
+  opacity: 1;
+}
+
+.swiper-testimonial .swiper-pagination-bullet-active
+{
+  background-color: #1f1f1f !important;
+  border: 2px solid white !important;
+  outline: 1px solid #161616;
+  scale: 1.2;
+}
+
+.mySwiper .swiper-pagination
+{
+  display: none;
+}
+
+.dropdown:hover .dropdownmenu
+{
+  opacity: 1;
+  scale: 1;
+}
+
+.dropdownmenu
+{
+  transition: opacity 0.5s ease-in-out;
+  scale: 0;
+  opacity: 0;
+  z-index: 99;
+}
+
+@media screen and (min-width: 768px)
+{
+  .dropdown1:hover .dropdownmenu1
+  {
+    scale: 1;
+    opacity: 1;
+    position: absolute;
+  }
+
+  .dropdownmenu1
+  {
+    transition: opacity 0.5s ease-in-out;
+    scale: 0;
+    position: absolute !important;
+    opacity: 0;
+    border-radius: 5px;
+    z-index: 99;
+  }
+}
+
+.dropdown1:hover .dropdownmenu1
+{
+  scale: 1;
+  opacity: 1;
+  position: relative;
+}
+
+.dropdownmenu1
+{
+  transition: opacity 0.5s ease-in-out;
+  scale: 0;
+  position: absolute;
+  opacity: 0;
+  border-radius: 5px;
+  z-index: 99;
+}
+
+.ShowTogller:hover .itemshow
+{
+  opacity: 1;
+}
+
+.itemshow
+{
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.flip:hover
+{
+  transform: rotateY(180deg);
+}
+
+.zoomIn
+{
+  animation: zoomIn 6s infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-delay: 0.5s;
+}
+
+@keyframes zoomIn
+{
+  0%
+  {
+    transform: scale(1);
+  }
+
+  100%
+  {
+    transform: scale(1.1);
+  }
+}
+
+.img-scale
+{
+  transition: scale 0.5s ease-in-out;
+}
+
+.contain-image:hover .img-scale
+{
+  scale: 1.2;
+}
+
+.contain-image .img-move
+{
+  transition: all 0.5s ease-in-out;
+  background-size: cover;
+  background-position: 50% 50%;
+  transform: matrix(1.2, 0, 0, 1.2, 41.088, 0);
+}
+
+.contain-image:hover .img-move
+{
+  transform: matrix(1.2, 0, 0, 1.2, -41.088, 0);
+}
+
+.contain-image .description
+{
+  transition: background-color 0.5s ease-in-out;
+}
+
+.contain-image:hover .description
+{
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+.overlayblue
+{
+  background-color: transparent !important;
+  background-image: linear-gradient(90deg,
+      #0000001a 0%,
+      #2346a7 45%) !important;
+}
+
+.bg-linear-yellow
+{
+  background: linear-gradient(135deg,
+      rgb(255, 222, 22) 0%,
+      rgb(35, 70, 167) 100%);
+}
+
+.fade-in-bottom
+{
+  -webkit-animation: fade-in-bottom 1s;
+  animation: fade-in-bottom 1s ease-in-out;
+}
+
+@keyframes fade-in-bottom
+{
+  0%
+  {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  100%
+  {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-top
+{
+  -webkit-animation: fade-in-bottom 1s;
+  animation: fade-in-top 1s ease-in-out;
+}
+
+@keyframes fade-in-top
+{
+  0%
+  {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  100%
+  {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-left
+{
+  -webkit-animation: fade-in-left 1s;
+  animation: fade-in-left 1s ease-in-out;
+}
+
+@keyframes fade-in-left
+{
+  0%
+  {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  100%
+  {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+
+    opacity: 1;
+  }
+}
+
+.fade-in-right
+{
+  -webkit-animation: fade-in-right 0.5s;
+  animation: fade-in-right 0.5s ease-in-out;
+}
+
+@keyframes fade-in-right
+{
+  0%
+  {
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  100%
+  {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.bg-linear-blue
+{
+  box-shadow: 0 0 0 0 #2346a7;
+  animation: button-ripple 3s infinite ease-out;
+  opacity: 0.6;
+}
+
+@keyframes button-ripple
+{
+  70%
+  {
+    box-shadow: 0 0 0 12px rgba(35, 70, 167, 0.6);
+    opacity: 0.6;
+  }
+
+  100%
+  {
+    box-shadow: 0 0 0 16px rgba(35, 70, 167, 0);
+    opacity: 0;
+  }
+}
+
+.colorToggler
+{
+  position: relative;
+}
+
+.colorToggler:hover .colorContainer
+{
+  opacity: 1;
+}
+
+.colorContainer
+{
+  opacity: 0;
+
+  transition: all 0.5s ease-in-out;
+}
+
+/* Print styles */
+@media print
+{
+
+  /* Hide all UI elements except the invoice content */
+  body>*:not(.invoice-page)
+  {
+    display: none !important;
+  }
+
+  /* Show only the invoice content */
+  .invoice-page
+  {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Reset modal styles for printing */
+  .fixed.inset-0.z-50
+  {
+    position: static !important;
+    z-index: auto !important;
+    background: none !important;
+  }
+
+  /* Ensure content takes full width */
+  body
+  {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  /* Ensure text is black for better printing */
+  *
+  {
+    color: black !important;
+  }
+
+  /* Remove shadows and backgrounds */
+  *
+  {
+    box-shadow: none !important;
+    background: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  .page-break
+  {
+    page-break-before: always;
+  }
+}
