@@ -42,7 +42,7 @@ export default function Product({ params }) {
           );
           setProduct(response.data.data);
 
-          setMainImage(response.data.data.colors[0].images[0]);
+          setMainImage(response.data.data.image);
           setCategory(response.data.data.category);
           setLoading(false);
         } catch (error) {

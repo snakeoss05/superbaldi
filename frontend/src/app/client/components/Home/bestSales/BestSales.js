@@ -27,8 +27,7 @@ export default function BestSales() {
       .map((product) => ({
         ...product,
         discountPercentage:
-          ((product.prix_passager - product.sellingPrice) /
-            product.prix_passager) *
+          ((product.prix_passager - product.cost) / product.prix_passager) *
           100,
       }))
       .sort((a, b) => b.discountPercentage - a.discountPercentage) // Sort by discount percentage (descending)
