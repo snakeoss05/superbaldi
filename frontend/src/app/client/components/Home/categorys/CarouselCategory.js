@@ -31,7 +31,7 @@ export default function CarouselCategory({ categories }) {
             spaceBetween: 20,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 30,
           },
         }}
@@ -47,9 +47,8 @@ export default function CarouselCategory({ categories }) {
               <Image
                 src={category.image || "/fashion/category/default-category.jpg"}
                 alt={category.name || "Category image"}
-                width={200}
-                height={200}
-                className="h-36 w-auto object-cover hover:scale-110 transition duration-500"
+                className="h-auto w-auto object-cover p-4 hover:scale-110 transition duration-500"
+                fill
               />
 
               {category.name && (

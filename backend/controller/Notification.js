@@ -76,7 +76,7 @@ export const checkStockLevel = async (productId) => {
   } else if (product.stock <= 5) {
     Notification.create({
       type: "low-stock",
-      message: `${product.name} has ${product.stock} left.`,
+      message: `${product.productName} has ${product.stock} left.`,
       product: product._id,
       priority: "medium",
     });

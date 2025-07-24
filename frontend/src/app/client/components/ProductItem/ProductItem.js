@@ -16,8 +16,6 @@ export default function ProductItem({ product, progress }) {
   const user = useAppSelector((state) => state.auth.user);
   const [loading, setLoading] = useState(false);
   const [addToBag, setAddToBag] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [MainImage, setMainImage] = useState(product.colors[0].images[0]);
 
   const dispatch = useAppDispatch();
 
@@ -27,7 +25,6 @@ export default function ProductItem({ product, progress }) {
     dispatch(
       addItem({
         ...product,
-        selectedColor,
       })
     );
     setAddToBag(true);
@@ -49,10 +46,7 @@ export default function ProductItem({ product, progress }) {
       console.error("Error opening quick view:", error);
     }
   };
-  const handleChangeColor = (color) => {
-    setSelectedColor(color);
-    setMainImage(color.images[0]);
-  };
+
   function handleAddToWishlist() {
     if (token) {
       createWishlist(product._id, token._id).then((data) => {
@@ -66,8 +60,8 @@ export default function ProductItem({ product, progress }) {
   return (
     <div
       dir="ltr"
-      className="w-full max-w-sm flex flex-col gap-4 p-4 bg-white border border-border-light colorToggler rounded-lg hover:shadow-lg transition duration-300 ">
-      <div className="flex justify-center  relative rounded overflow-hidden  card ">
+      className="w-full max-w-sm flex flex-col gap-4 p-4 bg-white border border-border-light  rounded-lg hover:shadow-lg transition duration-300 ">
+      <div className="flex justify-center  relative rounded overflow-hidden   ">
         {product.discount > 0 && (
           <p className="font-semibold text-xs text-white bg-secondary px-2 py-1 rounded-lg z-10 absolute top-0 left-0  flex items-center justify-center">
             {product.discount}%
@@ -124,25 +118,13 @@ export default function ProductItem({ product, progress }) {
             />{" "}
           </g>
         </svg>
-        <div className="imageSecondary  ">
-          <Image
-            src={
-              product.colors[1]?.images[0] ||
-              product.colors[0]?.images[1] ||
-              product.colors[0]?.images[0]
-            }
-            className="aspect-[1024/921] h-36  w-auto object-cover rounded-lg z-0"
-            alt="secondary"
-            width={500}
-            height={500}
-          />
-        </div>
+
         <Link
           href={`/client/pages/product/${encodeURIComponent(
             product.productName
           )}/${product._id}`}>
           <Image
-            src={MainImage}
+            src={product.image}
             width={500}
             height={500}
             className="aspect-[1024/921] h-36 w-auto object-cover imagePrimary rounded-lg "
@@ -197,23 +179,7 @@ export default function ProductItem({ product, progress }) {
           )}
           <div className="flex flex-row items-center justify-between gap-2">
             <Price product={product} role={user.role} />
-            <div className="absolute  top-0 left-0 w-full h-fit p-2 z-50 colorContainer bg-white flex flex-col  gap-4">
-              <div className="flex flex-row  gap-2">
-                {product.colors.length > 0 &&
-                  product.colors.map((color, index) => (
-                    <button
-                      key={color._id}
-                      role="change-product-color"
-                      aria-label={color.colorName}
-                      style={{ backgroundColor: color.colorName }}
-                      onClick={() => handleChangeColor(color)}
-                      className={`h-8 w-8 border rounded-full  ${
-                        selectedColor.code === color.code &&
-                        "border-2 border-gray-500"
-                      }`}></button>
-                  ))}
-              </div>
-            </div>
+
             <button
               onClick={handleAddToCart}
               className={`p-1.5 shadow border transition-all duretion-500 rounded text-danger hover:bg-[#db4444] hover:text-white ${

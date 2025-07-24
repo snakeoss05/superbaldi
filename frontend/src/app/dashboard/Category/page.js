@@ -23,9 +23,7 @@ const Category = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(
-        "https://superbaldi-production.up.railway.app/api/categories"
-      );
+      const response = await axios.get("http://localhost:5000/api/categories");
       setCategories(response.data.data);
     } catch (error) {
       toast.error("Failed to fetch categories.");
@@ -74,8 +72,8 @@ const Category = () => {
       }
 
       const url = editingCategory
-        ? `https://superbaldi-production.up.railway.app/api/categories/${editingCategory._id}`
-        : "https://superbaldi-production.up.railway.app/api/categories";
+        ? `http://localhost:5000/api/categories/${editingCategory._id}`
+        : "http://localhost:5000/api/categories";
 
       const method = editingCategory ? "put" : "post";
 
@@ -131,7 +129,7 @@ const Category = () => {
               toast.dismiss(t.id);
               try {
                 const response = await axios.delete(
-                  `https://superbaldi-production.up.railway.app/api/categories/${id}`,
+                  `http://localhost:5000/api/categories/${id}`,
                   {
                     withCredentials: true,
                   }

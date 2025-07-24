@@ -92,7 +92,7 @@ export default function CustomerProfile({ isOpen, onClose, id }) {
                 <div className="flex items-center gap-4">
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      customer?.role === "ADMIN"
+                      customer?.role === "admin"
                         ? "bg-purple-100 text-purple-800"
                         : customer?.role === "customer"
                         ? "bg-blue-100 text-blue-800"

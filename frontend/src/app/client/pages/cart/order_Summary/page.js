@@ -48,7 +48,7 @@ export default function OrderSummary() {
     };
     try {
       const response = await axios.post(
-        "https://superbaldi-production.up.railway.app/api/orders",
+        "http://localhost:5000/api/orders",
         data
       );
       if (response.status === 201) {

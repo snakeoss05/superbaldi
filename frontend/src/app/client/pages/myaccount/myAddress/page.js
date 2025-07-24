@@ -26,7 +26,7 @@ export default function Addresses() {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/addresses/${user._id}`
+          `http://localhost:5000/api/addresses/${user._id}`
         );
 
         if (response.status === 200) {
@@ -55,7 +55,7 @@ export default function Addresses() {
 
     try {
       const response = await axios.post(
-        `https://superbaldi-production.up.railway.app/api/addresses/${user._id}`,
+        `http://localhost:5000/api/addresses/${user._id}`,
         address
       );
       if (response.status === 201) {
@@ -76,7 +76,7 @@ export default function Addresses() {
 
     try {
       const response = await axios.delete(
-        `https://superbaldi-production.up.railway.app/api/addresses/${user._id}`
+        `http://localhost:5000/api/addresses/${user._id}`
       );
       if (response.status === 200) {
         toast.success("Address deleted successfully");

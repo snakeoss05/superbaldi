@@ -11,12 +11,23 @@ export default function NewArrial() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
+  useEffect(() => {
+    const changePage = () => {
+      setPage(page + 1);
+    };
+    if (page > totalPages) {
+      setPage(1);
+      return;
+    } else if (totalPages < 1) {
+      const interval = setInterval(changePage, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [page]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/products?page=${page}&limit=8`
+          `http://localhost:5000/api/products?page=${page}&limit=8&discount=true&sortField=createdAt&sortOrder=desc`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
@@ -24,7 +35,7 @@ export default function NewArrial() {
         console.log(error);
       }
     };
-    if (products.length === 0) fetchProducts();
+    fetchProducts();
   }, [page, products.length]);
   return (
     <div className="flex flex-col  justify-center gap-8 max-w-screen-xl  sm:py-16 my-8 mx-auto">
@@ -39,7 +50,7 @@ export default function NewArrial() {
             </p>
           </div>
 
-          <Countdown targetDate="2025-06-28T00:00:00" />
+          <Countdown targetDate="2025-08-28T00:00:00" />
         </div>
       </div>
 

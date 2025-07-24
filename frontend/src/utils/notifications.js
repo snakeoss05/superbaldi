@@ -1,8 +1,7 @@
 // api/notifications.js
 import axios from "axios";
 
-const API_BASE =
-  "https://superbaldi-production.up.railway.app/api/notifications";
+const API_BASE = "http://localhost:5000/api/notifications";
 
 export const fetchStockNotifications = async () => {
   try {

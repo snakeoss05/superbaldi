@@ -8,7 +8,6 @@ import { addItem } from "@/lib/features/cart/cartReducer";
 import { createWishlist } from "@/utils/wishlistService";
 import { useRouter } from "next/navigation";
 import Price from "./Price";
-import ImageDisplay from "../../pages/product/[name]/[id]/ImageDisplay";
 
 export default function QuickView() {
   const dispatch = useAppDispatch();
@@ -34,7 +33,7 @@ export default function QuickView() {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/products/${id}`
+          `http://localhost:5000/api/products/${id}`
         );
         setProduct(response.data.data);
         setMainImage(response.data.data.colors[0].images[0]);
@@ -89,15 +88,11 @@ export default function QuickView() {
       toast.error("Please login first");
     }
   }
-  const handleChangeColor = (color) => {
-    setSelectedColor(color);
-    setMainImage(color.images[0]);
-  };
+
   const handleAddToBag = () => {
     dispatch(
       addItem({
         ...product,
-        selectedColor,
         quantity,
       })
     );
@@ -114,15 +109,9 @@ export default function QuickView() {
 
   function handleAddToCart() {
     const discount = product.discount || 0;
-    const price =
-      user && user.role && product.prices[user.role] !== undefined
-        ? product.prices[user.role]
-        : product.prices.detaillant || 0;
-
-    dispatch(
+    const price = dispatch(
       addItem({
         ...product,
-        price: Number(price),
         discount,
         quantity,
       })
@@ -235,17 +224,16 @@ export default function QuickView() {
         <div className="grid grid-cols-1 md:grid-cols-2 h-full">
           {/* Left column - Image gallery */}
 
-          {selectedColor?.images && selectedColor.images.length > 0 ? (
+          {product.image && (
             <div className="flex flex-col justify-center items-center sm:items-center gap-4  overflow-y-auto  no-scrollbar">
-              <ImageDisplay
-                selectedColor={selectedColor}
-                mainImage={mainImage}
-                setMainImage={setMainImage}
-                product={product}
+              <Image
+                src={product.image}
+                alt={product.productName}
+                className="w-full h-full object-contain img-scale"
+                width={500}
+                height={500}
               />
             </div>
-          ) : (
-            <p>No image available for selected color.</p>
           )}
 
           {/* Right column - Product details */}
@@ -318,22 +306,7 @@ export default function QuickView() {
               </p>
             </div>
             <hr className="my-4" />
-            <h3 className="text-lg font-semibold">
-              Color: {selectedColor.colorName}
-            </h3>
-            <div className="flex gap-2">
-              {product.colors.length > 0 &&
-                product.colors.map((color, index) => (
-                  <button
-                    key={color._id}
-                    style={{ backgroundColor: color.colorName }}
-                    onClick={() => handleChangeColor(color)}
-                    className={`h-10 w-10 border rounded-full  ${
-                      selectedColor.colorName === color.colorName &&
-                      "border-2 border-gray-500"
-                    }`}></button>
-                ))}
-            </div>
+
             <div className="my-6">
               <h3 className="text-sm font-medium text-gray-900 mb-2">
                 Product Details
@@ -347,7 +320,9 @@ export default function QuickView() {
                 </li>
                 <li className="flex">
                   <span className="font-medium w-24">SKU:</span>
-                  <span className="">{product.sku || "Not specified"}</span>
+                  <span className="">
+                    {product.productId || "Not specified"}
+                  </span>
                 </li>
                 <li className="flex">
                   <span className="font-medium w-24">Availability:</span>

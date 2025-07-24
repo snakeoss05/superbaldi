@@ -36,7 +36,15 @@ export const createProduct = async (req, res) => {
       description,
       stock,
       discount,
-      price,
+      tva,
+      code_barre,
+      prix_achat,
+      prix_passager,
+      prix_gros,
+      prix_detail,
+      image,
+      place,
+      gros_qty,
     } = req.body;
 
     // Validate required fields
@@ -53,56 +61,31 @@ export const createProduct = async (req, res) => {
         .status(400)
         .json({ success: false, message: "All fields are required" });
     }
-    const uploadedImagesMap = {};
-    const imageUploadPromises = [];
-    // Check if a file was uploaded
-    req.files.forEach((file) => {
-      const match = file.fieldname.match(/colors\[(.*?)\]/); // Match color name from fieldname
-      if (match) {
-        const colorName = match[1];
 
-        if (!uploadedImagesMap[colorName]) {
-          uploadedImagesMap[colorName] = []; // Initialize if not already present
-        }
+    // Ensure file path is correct
+    const filePath = file.path;
 
-        // Ensure file path is correct
-        const filePath = file.path;
-
-        // Upload image to Cloudinary and store promise to wait for all uploads
-        imageUploadPromises.push(
-          uploadProductImage(filePath)
-            .then((uploadResult) => {
-              // Add Cloudinary URL to map for the corresponding color
-              if (uploadResult.success) {
-                uploadedImagesMap[colorName].push(uploadResult.imageUrl);
-              }
-            })
-            .catch((error) => {
-              console.error(
-                `Error uploading image for color ${colorName}:`,
-                error
-              );
-            })
-        );
-      }
-    });
-
-    // Wait for all image uploads to complete
-    await Promise.all(imageUploadPromises);
+    // Upload the file to Cloudinary
+    const result = await uploadProductImage(filePath);
 
     // Create the new product
     const newProduct = new Product({
       productName,
       brandName,
       category,
-      colors: colors.map((color) => {
-        const images = uploadedImagesMap[color.colorName] || [];
-        return { colorName: color.colorName, code: color.code, images };
-      }), // Ensure this is a string
+      image: result.imageUrl,
       description: description || "", // Default to empty string if missing
       discount: discount || 0, // Default discount to 0 if missing
       stock,
-      price,
+      tva,
+      code_barre,
+      prix_achat,
+      prix_passager,
+      prix_gros,
+      prix_detail,
+      image,
+      place,
+      gros_qty,
     });
 
     // Save to the database

@@ -27,17 +27,31 @@ export default function BestSales() {
       .map((product) => ({
         ...product,
         discountPercentage:
-          ((product.price - product.sellingPrice) / product.price) * 100,
+          ((product.prix_passager - product.sellingPrice) /
+            product.prix_passager) *
+          100,
       }))
       .sort((a, b) => b.discountPercentage - a.discountPercentage) // Sort by discount percentage (descending)
       .slice(0, 2); // Get the top two discounted products
   }
 
   useEffect(() => {
+    const changePage = () => {
+      setPage(page + 1);
+    };
+    if (page > totalPages) {
+      setPage(1);
+      return;
+    } else if (totalPages < 1) {
+      const interval = setInterval(changePage, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [page]);
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/products?page=${page}&limit=8&discount=${discount}&sortField=${sortField}&sortOrder=${sortOrder}`
+          `http://localhost:5000/api/products?page=${page}&limit=8&discount=${discount}&sortField=${sortField}&sortOrder=${sortOrder}`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
@@ -149,7 +163,7 @@ export default function BestSales() {
                   <Link
                     href={`/client/pages/product/${product.productName}/${product._id}`}>
                     <img
-                      src={product.colors[0].images[0]}
+                      src={product.image}
                       className="object-contain hover:scale-105 ease-in duration-300 rounded-lg  aspect-auto w-auto h-64"
                       alt="product-image"
                     />

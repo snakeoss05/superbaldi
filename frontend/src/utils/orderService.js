@@ -1,15 +1,12 @@
 export const createOrder = async (orderData) => {
   try {
-    const response = await fetch(
-      "https://superbaldi-production.up.railway.app/api/orders",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      }
-    );
+    const response = await fetch("http://localhost:5000/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
 
     const data = await response.json();
     return data;
@@ -21,7 +18,7 @@ export const createOrder = async (orderData) => {
 export const getOrdersById = async (orderId, page) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/${orderId}?page=${page}&limit=8`,
+      `http://localhost:5000/api/orders/${orderId}?page=${page}&limit=8`,
       {
         method: "GET",
         headers: {
@@ -39,7 +36,7 @@ export const getOrdersById = async (orderId, page) => {
 export const DeleteOrder = async (orderId) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/${orderId}`,
+      `http://localhost:5000/api/orders/${orderId}`,
       {
         method: "DELETE",
         headers: {
@@ -57,7 +54,7 @@ export const DeleteOrder = async (orderId) => {
 export const getOrdersProducts = async (orderId) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/getOrderProducts/${orderId}`,
+      `http://localhost:5000/api/orders/getOrderProducts/${orderId}`,
       {
         method: "GET",
         headers: {
@@ -75,7 +72,7 @@ export const getOrdersProducts = async (orderId) => {
 export const getOrdersByOderId = async (orderId) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/getOrderByOderId/${orderId}`,
+      `http://localhost:5000/api/orders/getOrderByOderId/${orderId}`,
       {
         method: "GET",
         headers: {
@@ -93,7 +90,7 @@ export const getOrdersByOderId = async (orderId) => {
 export const getOrders = async (page, orderDate, status) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders?page=${page}&limit=8&orderDate=${orderDate}&status=${status}`,
+      `http://localhost:5000/api/orders?page=${page}&limit=8&orderDate=${orderDate}&status=${status}`,
       {
         method: "GET",
         headers: {
@@ -116,7 +113,7 @@ export const updateOrderStatus = async (orderId, status, paymentStatus) => {
   };
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/${orderId}`,
+      `http://localhost:5000/api/orders/${orderId}`,
       {
         method: "PUT",
         credentials: "include",
@@ -136,7 +133,7 @@ export const updateOrderStatus = async (orderId, status, paymentStatus) => {
 export const generateInvoice = async (orderId) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/generateInvoice/${orderId}`,
+      `http://localhost:5000/api/orders/generateInvoice/${orderId}`,
       {
         method: "GET",
         headers: {
@@ -164,7 +161,7 @@ export const generateInvoice = async (orderId) => {
 export const updateOrderItems = async (orderId, orderItems) => {
   try {
     const response = await fetch(
-      `https://superbaldi-production.up.railway.app/api/orders/${orderId}/items`,
+      `http://localhost:5000/api/orders/${orderId}/items`,
       {
         method: "PUT",
         headers: {

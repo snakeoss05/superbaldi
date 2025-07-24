@@ -20,7 +20,7 @@ export default function ForgetPassword() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://superbaldi-production.up.railway.app/api/auth/send-otp",
+        "http://localhost:5000/api/auth/send-otp",
         { email }
       );
       setLoading(false);
@@ -41,7 +41,7 @@ export default function ForgetPassword() {
     }
     try {
       const response = await axios.post(
-        "https://superbaldi-production.up.railway.app/api/auth/reset-password",
+        "http://localhost:5000/api/auth/reset-password",
         { email, password }
       );
       setLoading(false);

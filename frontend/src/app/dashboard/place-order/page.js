@@ -41,7 +41,7 @@ export default function PlaceOrder() {
 
         try {
           const res = await axios.get(
-            `https://superbaldi-production.up.railway.app/api/users?${queryParams.toString()}`,
+            `http://localhost:5000/api/users?${queryParams.toString()}`,
             {
               withCredentials: true,
             }
@@ -66,7 +66,7 @@ export default function PlaceOrder() {
         setLoading(true);
         try {
           const res = await axios.get(
-            `https://superbaldi-production.up.railway.app/api/products/search?name=${searchTerm}`
+            `http://localhost:5000/api/products/search?name=${searchTerm}`
           );
           setFilteredProducts(res.data.data);
           setLoading(false);
@@ -84,7 +84,7 @@ export default function PlaceOrder() {
     dispatch(
       addItem({
         ...product,
-        price: product.prices.detaillant || 0,
+        price: product.prix_passager || 0,
         discount: product.discount || 0,
       })
     );
@@ -269,7 +269,7 @@ export default function PlaceOrder() {
                     <div className="flex items-center gap-3">
                       <div className="w-16 h-16 relative rounded-md overflow-hidden">
                         <img
-                          src={product.colors[0].images[0]}
+                          src={product.image}
                           alt={product.productName}
                           className="object-cover w-full h-full"
                         />
@@ -279,7 +279,7 @@ export default function PlaceOrder() {
                           {product.productName}
                         </h3>
                         <p className="text-sm text-gray-500">
-                          {product.prices.detaillant || 0}
+                          {product.prix_passager || 0}
                           {product.discount > 0 && (
                             <span className="ml-2 text-red-500">
                               -{product.discount}%

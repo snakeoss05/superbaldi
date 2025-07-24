@@ -11,7 +11,7 @@ export default function AccountDetails() {
   const token = useAppSelector((state) => state.auth.token);
   const dispatch = useAppDispatch();
   const [infoAccount, setInfoAccount] = useState({
-    name: user?.name || "",
+    username: user?.username || "",
     email: user?.email || "",
     password: "",
     confirmPassword: "",
@@ -27,7 +27,7 @@ export default function AccountDetails() {
     if (user) {
       setInfoAccount((prev) => ({
         ...prev,
-        name: user.name || "",
+        username: user.username || "",
         email: user.email || "",
       }));
     }
@@ -39,7 +39,8 @@ export default function AccountDetails() {
 
     const updateFields = {};
 
-    if (infoAccount.name !== user.name) updateFields.name = infoAccount.name;
+    if (infoAccount.username !== user.username)
+      updateFields.username = infoAccount.username;
     if (infoAccount.email !== user.email)
       updateFields.email = infoAccount.email;
     if (infoAccount.password) updateFields.password = infoAccount.password;
@@ -52,7 +53,7 @@ export default function AccountDetails() {
 
     try {
       const { data } = await axios.put(
-        "https://superbaldi-production.up.railway.app/api/profile/update",
+        "http://localhost:5000/api/profile/update",
         updateFields,
         {
           headers: {
@@ -97,7 +98,7 @@ export default function AccountDetails() {
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="relative">
               <div className="w-32 h-32 uppercase rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold">
-                {user.name}
+                {user.username}
               </div>
               <div className="absolute bottom-0 right-0 bg-white dark:bg-gray-700 rounded-full p-1.5 border-2 border-gray-200 dark:border-gray-600">
                 <svg
@@ -111,7 +112,7 @@ export default function AccountDetails() {
             </div>
             <div className="flex-1 text-center md:text-left">
               <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
-                {infoAccount.name}
+                {infoAccount.phone}
               </h2>
               <p className="text-gray-500 dark:text-gray-400 mt-1">
                 {infoAccount.email}
@@ -170,12 +171,12 @@ export default function AccountDetails() {
                     </svg>
                   </div>
                   <input
-                    name="name"
-                    id="name"
+                    name="username"
+                    id="username"
                     type="text"
                     onChange={handleChange}
-                    value={infoAccount.name}
-                    placeholder="Your full name"
+                    value={infoAccount.username}
+                    placeholder="Your  username"
                     className="pl-10 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
                   />
                 </div>

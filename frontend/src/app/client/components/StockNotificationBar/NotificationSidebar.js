@@ -47,7 +47,7 @@ export default function NotificationSidebar() {
         })
         .catch((error) => console.error(error));
     }
-    if (token && role === "ADMIN") {
+    if (token && role === "admin") {
       const intervalId = setInterval(pollNotifications, 5000);
       return () => clearInterval(intervalId);
     }
@@ -60,7 +60,7 @@ export default function NotificationSidebar() {
     });
   };
 
-  if (!token || role !== "ADMIN") {
+  if (!token || role !== "admin") {
     return null;
   }
 

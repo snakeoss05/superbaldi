@@ -6,7 +6,7 @@ export default function News() {
     {
       id: "67961f3a9",
 
-      image: "/fashion/brands/1.jpg",
+      image: "/fashion/brands/1.png",
     },
     {
       id: "67961f3a9e073",
@@ -21,22 +21,7 @@ export default function News() {
     {
       id: "67961f3a9e070e38083dc3",
 
-      image: "/fashion/brands/5.png",
-    },
-    {
-      id: "67961f3a9e070e380",
-
-      image: "/fashion/brands/6.jpg",
-    },
-    {
-      id: "67961f3a9e3dc3",
-
-      image: "/fashion/brands/7.png",
-    },
-    {
-      id: "67961f3a9e070e3808dc3",
-
-      image: "/fashion/brands/8.jpg",
+      image: "/fashion/brands/4.png",
     },
   ];
   return (

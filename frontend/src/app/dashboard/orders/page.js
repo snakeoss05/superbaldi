@@ -41,9 +41,15 @@ export default function MyOrder() {
       });
     }
   }, [isAuth, page, orderDate, status]);
-  const handlePrint = (type, orderId) => {
+  const handlePrint = (type, order) => {
     if (!type) return;
-    router.push(`/dashboard/invoice/${orderId}`);
+    const response = axios.post(
+      `http://localhost:5000/api/invoice/generate-invoice`,
+      {
+        order,
+      }
+    );
+    router.push(`/dashboard/invoice/${order.orderId}`);
   };
   function handleStatusChange(orderId, status) {
     updateOrderStatus(orderId, status);
@@ -393,7 +399,7 @@ export default function MyOrder() {
                                 <button
                                   onClick={() => {
                                     setSelectedType("invoice");
-                                    handlePrint("invoice", order.orderId);
+                                    handlePrint("invoice", order);
                                   }}
                                   className="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                   <svg

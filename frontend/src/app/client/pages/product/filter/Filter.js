@@ -28,7 +28,7 @@ export default function Filter({
         }).toString();
 
         const response = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/products/filter-options?${queryParams}`
+          `http://localhost:5000/api/products/filter-options?${queryParams}`
         );
 
         setBrands(response.data.brands);

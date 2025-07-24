@@ -19,7 +19,7 @@ export default function Verification() {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/users/notverified?status=false&page=${page}&limit=8`,
+          `http://localhost:5000/api/users/notverified?status=false&page=${page}&limit=8`,
           {
             withCredentials: true,
           }
@@ -43,13 +43,9 @@ export default function Verification() {
     setUsers(updatedUsers);
     const user = users.find((user) => user._id === id);
     try {
-      await axios.put(
-        `https://superbaldi-production.up.railway.app/api/admin/update/${id}`,
-        user,
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.put(`http://localhost:5000/api/admin/update/${id}`, user, {
+        withCredentials: true,
+      });
       toast.success("User verified successfully");
     } catch (error) {
       console.error("Error updating user status:", error);

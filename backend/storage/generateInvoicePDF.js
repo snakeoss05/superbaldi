@@ -23,7 +23,7 @@ const generateInvoicePDF = async (orderId) => {
   const items = order.orderItems.map((item) => ({
     productName: item.product.name,
     qty: item.qty,
-    price: item.product.price,
+    price: item.product.,
   }));
 
   const data = {

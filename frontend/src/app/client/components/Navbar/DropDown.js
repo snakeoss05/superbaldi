@@ -141,7 +141,7 @@ export default function DropDown() {
 
                 <div>طلباتي</div>
               </Link>
-              {user.role === "ADMIN" && (
+              {user.role === "admin" && (
                 <Link
                   href="/dashboard/orders"
                   className="flex gap-4 mt-3.5 w-full py-1 hover:bg-gray-500 px-2 rounded cursor-pointer transition-all duration-300 ">

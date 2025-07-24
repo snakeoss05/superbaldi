@@ -19,7 +19,7 @@ export async function middleware(request) {
 
     // Verify the token
     const { payload } = await jwtVerify(token, secret);
-    const isAdmin = payload.role === "ADMIN";
+    const isAdmin = payload.role === "admin";
 
     // Restrict access to /dashboard routes for non-admins
     if (currentPath.startsWith("/dashboard") && !isAdmin) {
@@ -38,9 +38,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: [
-    "/client/pages/myaccount/:path*",
-    "/dashboard/:path*",
-    "/client/pages/cart/checkout",
-  ],
+  matcher: ["/client/pages/myaccount/:path*", "/client/pages/cart/checkout"],
 };

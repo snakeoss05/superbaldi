@@ -139,7 +139,7 @@ export default function Checkout() {
     };
     try {
       const response = await axios.post(
-        "https://superbaldi-production.up.railway.app/api/orders",
+        "http://localhost:5000/api/orders",
         data
       );
       if (response.status === 201) {
@@ -259,7 +259,7 @@ export default function Checkout() {
                   معلومات الشحن
                 </h2>
 
-                {user && user.address.adresse && !isEditing ? (
+                {user && user.address?.adresse !== "" && !isEditing ? (
                   <div className="bg-gray-50 p-4 rounded-lg mb-6">
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-lg font-medium text-gray-900">
@@ -513,7 +513,7 @@ export default function Checkout() {
                   </div>
                 </div>
 
-                {role === "ADMIN" && (
+                {role === "admin" && (
                   <div className="mt-8">
                     <h3 className="text-lg font-medium text-gray-900 mb-4">
                       خيارات الضريبة

@@ -13,7 +13,7 @@ export default function SignIn() {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [logform, setlogform] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   async function loginform(e) {
@@ -22,7 +22,7 @@ export default function SignIn() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://superbaldi-production.up.railway.app/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         logform
       );
 
@@ -57,17 +57,17 @@ export default function SignIn() {
           </p>
 
           <div>
-            <label htmlFor="email" className="sr-only">
-              البريد الإلكتروني
+            <label htmlFor="username" className="sr-only">
+              أسم المستخدم
             </label>
 
             <div className="relative">
               <input
-                type="email"
+                type="username"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="أدخل البريد الإلكتروني"
-                name="email"
-                value={logform.email}
+                placeholder="اسم المستخدم"
+                name="username"
+                value={logform.username}
                 onChange={HandleChange}
               />
 

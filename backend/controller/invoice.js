@@ -41,7 +41,7 @@ export const generateInvoice = async (req, res) => {
                         <tr>
                             <td>${item.name}</td>
                             <td>${item.qty}</td>
-                            <td>$${item.price.toFixed(2)}</td>
+                            <td>$${item.prix.toFixed(2)}</td>
                         </tr>
                     `
                       )
@@ -85,12 +85,10 @@ export const generateInvoice = async (req, res) => {
 
     await newInvoice.save();
 
-    res
-      .status(200)
-      .json({
-        message: "Invoice generated successfully",
-        pdfUrl: newInvoice.pdfUrl,
-      });
+    res.status(200).json({
+      message: "Invoice generated successfully",
+      pdfUrl: newInvoice.pdfUrl,
+    });
   } catch (error) {
     console.error("Error generating invoice:", error);
     res.status(500).json({ error: "Failed to generate invoice" });

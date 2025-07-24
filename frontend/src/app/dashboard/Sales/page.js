@@ -14,7 +14,7 @@ export default function Product() {
     const fetchSales = async () => {
       try {
         const res = await fetch(
-          `https://superbaldi-production.up.railway.app/api/product-sales-report?page=${page}&limit=8`,
+          `http://localhost:5000/api/product-sales-report?page=${page}&limit=8`,
           {
             method: "GET", // or "POST", "PUT", etc.
             credentials: "include", // Send cookies with cross-origin requests
@@ -38,7 +38,7 @@ export default function Product() {
   const downloadExcel = async () => {
     try {
       const response = await fetch(
-        "https://superbaldi-production.up.railway.app/api/export/product-sales-report?page=1&limit=10",
+        "http://localhost:5000/api/export/product-sales-report?page=1&limit=10",
         {
           method: "GET",
         }

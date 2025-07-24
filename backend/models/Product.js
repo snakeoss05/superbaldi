@@ -40,13 +40,10 @@ const productSchema = new mongoose.Schema(
     },
 
     price: { type: Number, required: true, min: 0 },
-    colors: [
-      {
-        colorName: { type: String, required: true }, // e.g., "Red", "Blue"
-        code: { type: String, required: true }, // e.g., "#FF0000", "#0000FF"
-        images: [{ type: String, required: true }], // Array of image URLs
-      },
-    ],
+
+    image: {
+      type: String,
+    },
 
     stock: {
       type: Number,

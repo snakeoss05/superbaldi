@@ -17,7 +17,7 @@ export default function SearchInput() {
         setLoading(true);
         try {
           const res = await axios.get(
-            `https://superbaldi-production.up.railway.app/api/products/search?name=${name}`
+            `http://localhost:5000/api/products/search?name=${name}`
           );
           setProducts(res.data.data);
           setLoading(false);
@@ -128,7 +128,7 @@ export default function SearchInput() {
                         <Image
                           width={100}
                           height={100}
-                          src={product.colors[0].images[0]}
+                          src={product.image}
                           className="rounded-lg w-auto h-16 object-cover"
                           alt="music"
                         />

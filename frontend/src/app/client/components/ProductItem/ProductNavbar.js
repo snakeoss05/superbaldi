@@ -13,8 +13,6 @@ export default function ProductNavbar({ product }) {
   const user = useAppSelector((state) => state.auth.user);
   const token = useAppSelector((state) => state.auth.token);
   const [loading, setLoading] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [MainImage, setMainImage] = useState(product.colors[0].images[0] || "");
   const [isHovered, setIsHovered] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -25,7 +23,6 @@ export default function ProductNavbar({ product }) {
     dispatch(
       addItem({
         ...product,
-        selectedColor,
       })
     );
 
@@ -75,7 +72,7 @@ export default function ProductNavbar({ product }) {
           className="block w-full h-full">
           <div className="relative w-full h-full">
             <Image
-              src={MainImage}
+              src={product.image}
               alt={product.productName}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -179,9 +176,9 @@ export default function ProductNavbar({ product }) {
       {/* Product Info */}
       <div className="p-4 flex flex-col gap-2">
         <Link
-          href={`/client/pages/product/${encodeURIComponent(product.name)}/${
-            product._id
-          }`}
+          href={`/client/pages/product/${encodeURIComponent(
+            product.productName
+          )}/${product._id}`}
           className="group">
           <h3 className="text-gray-800 font-medium text-sm line-clamp-2 group-hover:text-secondary transition-colors duration-200">
             {product.productName}

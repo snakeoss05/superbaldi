@@ -18,7 +18,7 @@ export default function Header() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://superbaldi-production.up.railway.app/api/categories"
+          "http://localhost:5000/api/categories"
         );
         setCategories(response.data.data);
       } catch (error) {
@@ -33,7 +33,7 @@ export default function Header() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://superbaldi-production.up.railway.app/api/products?&limit=2&discount=true&sortField=createdAt&sortOrder=desc`
+          `http://localhost:5000/api/products?&limit=2&discount=true&sortField=createdAt&sortOrder=desc`
         );
         setRecentProducts(res.data.data);
       } catch (error) {

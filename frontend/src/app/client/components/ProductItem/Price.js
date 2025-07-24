@@ -6,7 +6,7 @@ export default function Price({ product }) {
     return priceAfterDiscount.toFixed(2);
   }
 
-  const originalPrice = product.price;
+  const originalPrice = product.prix_passager; ;
   const discountedPrice =
     product.discount > 0
       ? calculateDiscount(originalPrice, product.discount)

@@ -14,7 +14,7 @@ export default function Categorys() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://superbaldi-production.up.railway.app/api/categories"
+          "http://localhost:5000/api/categories"
         );
         setCategories(response.data.data);
       } catch (error) {

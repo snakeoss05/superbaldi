@@ -5,7 +5,6 @@ import React from "react"; // Import React for React.use()
 import axios from "axios";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import ImageDisplay from "./ImageDisplay";
 import { useAppDispatch } from "@/lib/hooks";
 import { addItem, setItemQuantity } from "@/lib/features/cart/cartReducer";
 import { createWishlist } from "@/utils/wishlistService";
@@ -39,10 +38,10 @@ export default function Product({ params }) {
       const fetchProduct = async () => {
         try {
           const response = await axios.get(
-            `https://superbaldi-production.up.railway.app/api/products/${unwrappedParams.id}`
+            `http://localhost:5000/api/products/${unwrappedParams.id}`
           );
           setProduct(response.data.data);
-          setSelectedColor(response.data.data.colors[0]);
+
           setMainImage(response.data.data.colors[0].images[0]);
           setCategory(response.data.data.category);
           setLoading(false);
@@ -64,9 +63,7 @@ export default function Product({ params }) {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
-  const handleChangeColor = (color) => {
-    setSelectedColor(color);
-  };
+
   function handleAddToWishlist() {
     if (isAuth) {
       createWishlist(product._id, user._id).then((data) => {
@@ -81,7 +78,6 @@ export default function Product({ params }) {
       addItem({
         ...product,
         quantity,
-        selectedColor,
       })
     );
 
@@ -122,11 +118,12 @@ export default function Product({ params }) {
       />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
         <div className="flex flex-col  lg:flex-row gap-4">
-          <ImageDisplay
-            selectedColor={selectedColor}
-            mainImage={mainImage}
-            setMainImage={setMainImage}
-            product={product}
+          <Image
+            src={product.image}
+            alt={product.productName}
+            width={500}
+            height={500}
+            className="w-full h-full object-contain"
           />
         </div>
         <div className="flex flex-col gap-4 ">
@@ -208,22 +205,7 @@ export default function Product({ params }) {
               {product.stock}% - only {product.stock} Item(s) left in stock!
             </p>
           </div>
-          <h3 className="text-md font-medium capitalize">
-            Available Colors: {selectedColor.colorName}
-          </h3>
-          <div className="flex gap-2">
-            {product.colors.length > 0 &&
-              product.colors.map((color, index) => (
-                <button
-                  key={color._id}
-                  style={{ backgroundColor: color.colorName }}
-                  onClick={() => handleChangeColor(color)}
-                  className={`h-10 w-10 border rounded-full  ${
-                    selectedColor.colorName === color.colorName &&
-                    "border-[#1F1F1F]"
-                  }`}></button>
-              ))}
-          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 items-center">
             <div className="flex flex-row h-10 rounded-xl overflow-hidden border w-fit bg-gray-100">
               <span

@@ -13,7 +13,7 @@ const NotificationBadge = () => {
   const dispatch = useAppDispatch();
 
   // ✅ Conditionals AFTER hooks
-  if (!token || role !== "ADMIN") return null;
+  if (!token || role !== "admin") return null;
 
   return (
     <div

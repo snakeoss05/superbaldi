@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import axios from "axios";
-import Price from "@/app/client/components/ProductItem/Price";
 import Link from "next/link";
 
 export default function UpdateProduct() {
@@ -46,33 +45,27 @@ export default function UpdateProduct() {
     formData.append("category", product.category?._id || product.category);
     formData.append("stock", product.stock);
     formData.append("brandName", product.brandName);
-    formData.append("price", product.price);
+    formData.append("", product.prix_passager);
 
     if (product.images)
       for (let i = 0; i < product.images.length; i++) {
         formData.append("images", product.images[i]);
       }
-    await fetch(
-      `https://superbaldi-production.up.railway.app/api/products/${ProductId}`,
-      {
-        method: "PUT",
-        body: formData,
-        credentials: "include",
-      }
-    ).then((res) => {
+    await fetch(`http://localhost:5000/api/products/${ProductId}`, {
+      method: "PUT",
+      body: formData,
+      credentials: "include",
+    }).then((res) => {
       if (res.status === 200) {
         setEditing(false);
       }
     });
   };
   const handleDelete = async () => {
-    await fetch(
-      `https://superbaldi-production.up.railway.app/api/products/${ProductId}`,
-      {
-        method: "DELETE",
-        credentials: "include",
-      }
-    ).then((res) => {
+    await fetch(`http://localhost:5000/api/products/${ProductId}`, {
+      method: "DELETE",
+      credentials: "include",
+    }).then((res) => {
       if (res.status === 200) {
         toast.success("Product deleted successfully");
         setEditing(false);
@@ -86,7 +79,7 @@ export default function UpdateProduct() {
     }
     const fetchProduct = async () => {
       const response = await fetch(
-        `https://superbaldi-production.up.railway.app/api/products/${ProductId}`
+        `http://localhost:5000/api/products/${ProductId}`
       );
       const data = await response.json();
       if (!data.data) {
@@ -102,7 +95,7 @@ export default function UpdateProduct() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://superbaldi-production.up.railway.app/api/categories"
+          "http://localhost:5000/api/categories"
         );
         setCategories(response.data.data);
       } catch (error) {
@@ -365,13 +358,13 @@ export default function UpdateProduct() {
                 </div>
                 <div>
                   <label className="text-sm font-bold text-gray-400 ">
-                    Price
+                    
                   </label>
                   <input
                     type="number"
-                    name="price"
+                    name=""
                     className="w-full my-4 border-2 border-gray-300 rounded-md p-2"
-                    value={product.price}
+                    value={product.prix_passager}
                     onChange={handleChange}
                   />
                 </div>
@@ -425,7 +418,7 @@ export default function UpdateProduct() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-4 ">
               <div className="flex  items-center justify-center ">
                 <Image
-                  src={product.colors[0]?.images[0]}
+                  src={product.image}
                   alt="product image"
                   width={500}
                   height={500}
@@ -455,7 +448,9 @@ export default function UpdateProduct() {
                   <p className="text-sm text-gray-500 font-thin">(3 reviews)</p>
                 </div>
                 <div className="flex flex-row items-center gap-4">
-                  <Price product={product} role={"ADMIN"} />
+                  <p className="text-md font-semibold text-[#1F1F1F]">
+                    ${product.prix_passager}
+                  </p>
                   <p className="text-[#1F1F1F] text-sm font-semibold py-1 px-2 rounded-xl bg-[#D2EF9A]">
                     {product.discount}%
                   </p>

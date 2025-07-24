@@ -12,7 +12,7 @@ export default function SignIn() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [register, setRegister] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     role: "customer",
@@ -49,7 +49,7 @@ export default function SignIn() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!register.name) newErrors.name = "Name is required";
+    if (!register.username) newErrors.username = "username is required";
     if (!register.email) newErrors.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(register.email))
       newErrors.email = "Invalid email format";
@@ -71,7 +71,7 @@ export default function SignIn() {
 
     setLoading(true);
     const formData = new FormData();
-    formData.append("name", register.name);
+    formData.append("username", register.username);
     formData.append("email", register.email);
     formData.append("password", register.password);
     formData.append("role", register.role);
@@ -87,7 +87,7 @@ export default function SignIn() {
 
     try {
       const response = await axios.post(
-        "https://superbaldi-production.up.railway.app/api/users",
+        "http://localhost:5000/api/users",
         formData,
         {
           headers: {
@@ -154,18 +154,18 @@ export default function SignIn() {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
-                value={register.name}
+                name="username"
+                id="username"
+                value={register.username}
                 onChange={HandleChange}
                 className={`mt-1 block w-full rounded-md border ${
-                  errors.name ? "border-red-500" : "border-gray-300"
+                  errors.username ? "border-red-500" : "border-gray-300"
                 } p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right`}
                 placeholder="أدخل اسمك الكامل"
               />
-              {errors.name && (
+              {errors.username && (
                 <p className="mt-1 text-sm text-red-600 text-right">
-                  {errors.name}
+                  {errors.username}
                 </p>
               )}
             </div>
@@ -257,199 +257,6 @@ export default function SignIn() {
                 </p>
               )}
             </div>
-
-            <div>
-              <label
-                htmlFor="role"
-                className="block text-sm font-medium text-gray-700 text-right">
-                نوع النشاط التجاري
-              </label>
-              <select
-                name="role"
-                id="role"
-                value={register.role}
-                onChange={HandleChange}
-                className="mt-1 block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right">
-                <option value="customer">عميل</option>
-                <option value="detaillant">بائع</option>
-                <option value="ambulant">بائع متنقل</option>
-                <option value="gros">تاجر جملة</option>
-              </select>
-            </div>
-
-            {register.role !== "customer" && (
-              <>
-                <div>
-                  <label
-                    htmlFor="companyName"
-                    className="block text-sm font-medium text-gray-700 text-right">
-                    اسم الشركة
-                  </label>
-                  <input
-                    type="text"
-                    name="companyName"
-                    id="companyName"
-                    value={register.companyName}
-                    onChange={HandleChange}
-                    className={`mt-1 block w-full rounded-md border ${
-                      errors.companyName ? "border-red-500" : "border-gray-300"
-                    } p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right`}
-                    placeholder="أدخل اسم الشركة"
-                  />
-                  {errors.companyName && (
-                    <p className="mt-1 text-sm text-red-600 text-right">
-                      {errors.companyName}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="numberTva"
-                    className="block text-sm font-medium text-gray-700 text-right">
-                    رقم التسجيل
-                  </label>
-                  <input
-                    type="text"
-                    name="numberTva"
-                    id="numberTva"
-                    value={register.numberTva}
-                    onChange={HandleChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right"
-                    placeholder="أدخل رقم ضريبة القيمة المضافة"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 text-right">
-                    رقم الهاتف
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    value={register.phone}
-                    onChange={HandleChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right"
-                    placeholder="أدخل رقم الهاتف"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="address.adresse"
-                    className="block text-sm font-medium text-gray-700 text-right">
-                    العنوان
-                  </label>
-                  <input
-                    type="text"
-                    name="address.adresse"
-                    id="address.adresse"
-                    value={register.address.adresse}
-                    onChange={HandleChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right"
-                    placeholder="أدخل العنوان"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="address.ville"
-                      className="block text-sm font-medium text-gray-700 text-right">
-                      المدينة
-                    </label>
-                    <input
-                      type="text"
-                      name="address.ville"
-                      id="address.ville"
-                      value={register.address.ville}
-                      onChange={HandleChange}
-                      className="mt-1 block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right"
-                      placeholder="أدخل المدينة"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="address.codePostal"
-                      className="block text-sm font-medium text-gray-700 text-right">
-                      الرمز البريدي
-                    </label>
-                    <input
-                      type="text"
-                      name="address.codePostal"
-                      id="address.codePostal"
-                      value={register.address.codePostal}
-                      onChange={HandleChange}
-                      className="mt-1 block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-right"
-                      placeholder="أدخل الرمز البريدي"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
-                    وثيقة الترخيص/التسجيل
-                  </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                    <div className="space-y-1 text-center">
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true">
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <div className="flex text-sm text-gray-600 justify-center">
-                        <label
-                          htmlFor="file-upload"
-                          className="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                          <span>رفع ملف</span>
-                          <input
-                            id="file-upload"
-                            name="file-upload"
-                            type="file"
-                            className="sr-only"
-                            accept="image/*,application/pdf"
-                            onChange={handleFileChange}
-                          />
-                        </label>
-                        <p className="pr-1">أو اسحب وأفلت</p>
-                      </div>
-                      <p className="text-xs text-gray-500">
-                        PNG, JPG, PDF بحد أقصى 5MB
-                      </p>
-                    </div>
-                  </div>
-                  {errors.ConfirmationFile && (
-                    <p className="mt-1 text-sm text-red-600 text-right">
-                      {errors.ConfirmationFile}
-                    </p>
-                  )}
-                  {previewImage && (
-                    <div className="mt-4">
-                      <p className="text-sm font-medium text-gray-700 mb-2 text-right">
-                        معاينة:
-                      </p>
-                      <img
-                        src={previewImage}
-                        alt="معاينة الوثيقة"
-                        className="max-h-60 rounded-lg shadow-md mx-auto"
-                      />
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
           </div>
 
           <div>

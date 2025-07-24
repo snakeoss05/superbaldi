@@ -382,7 +382,7 @@ export default function Invoice({ params }) {
                       <div className="flex items-center">
                         <div className="h-12 w-12 flex-shrink-0 rounded-md overflow-hidden print:h-10 print:w-10">
                           <Image
-                            src={item.product.colors[0]?.images[0]}
+                            src={item.product.image}
                             alt={item.product.productName}
                             className="h-12 w-12 object-cover print:h-10 print:w-10"
                             width={48}

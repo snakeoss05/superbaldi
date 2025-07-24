@@ -30,7 +30,7 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem._id);
 
-      const itemPrice = newItem.price;
+      const itemPrice = newItem.prix_passager;
       const itemDiscount = newItem.discount
         ? (newItem.price * newItem.discount) / 100
         : 0;
@@ -43,7 +43,7 @@ const cartSlice = createSlice({
         state.items.push({
           id: newItem._id,
           price: itemPrice,
-          image: newItem.selectedColor?.images[0] || "",
+          image: newItem.image || "",
           discount: itemDiscount,
           quantity: itemQuantity,
           totalPrice: itemPrice * itemQuantity,
