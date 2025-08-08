@@ -148,10 +148,7 @@ body
   opacity: 1;
 }
 
-.card:hover .imagePrimary
-{
-  opacity: 0;
-}
+
 
 .toggler:hover .dropdown
 {

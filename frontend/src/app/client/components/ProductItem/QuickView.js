@@ -23,7 +23,7 @@ export default function QuickView() {
   const [mainImage, setMainImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(null);
+
   const [isWishlisted, setIsWishlisted] = useState(false);
   const router = useRouter();
 
@@ -36,8 +36,8 @@ export default function QuickView() {
           `http://localhost:5000/api/products/${id}`
         );
         setProduct(response.data.data);
-        setMainImage(response.data.data.colors[0].images[0]);
-        setSelectedColor(response.data.data.colors[0]);
+        setMainImage(response.data.data.image);
+
         // Check if product is in wishlist
         if (isAuth && user) {
           // This would need to be implemented with your actual wishlist API

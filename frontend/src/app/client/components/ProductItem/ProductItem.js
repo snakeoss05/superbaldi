@@ -60,8 +60,8 @@ export default function ProductItem({ product, progress }) {
   return (
     <div
       dir="ltr"
-      className="w-full max-w-sm flex flex-col gap-4 p-4 bg-white border border-border-light  rounded-lg hover:shadow-lg transition duration-300 ">
-      <div className="flex justify-center  relative rounded overflow-hidden   ">
+      className="w-full max-w-sm flex flex-col gap-4 p-4 bg-white border border-border-light colorToggler  rounded-lg hover:shadow-lg transition duration-300 ">
+      <div className="flex justify-center  relative rounded overflow-hidden   card ">
         {product.discount > 0 && (
           <p className="font-semibold text-xs text-white bg-secondary px-2 py-1 rounded-lg z-10 absolute top-0 left-0  flex items-center justify-center">
             {product.discount}%
