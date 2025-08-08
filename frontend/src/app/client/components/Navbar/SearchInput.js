@@ -17,7 +17,7 @@ export default function SearchInput() {
         setLoading(true);
         try {
           const res = await axios.get(
-            `http://localhost:5000/api/products/search?name=${name}`
+            `http://localhost:5000/api/products/search?searchterm=${name}`
           );
           setProducts(res.data.data);
           setLoading(false);

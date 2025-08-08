@@ -30,9 +30,9 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem._id);
 
-      const itemPrice = newItem.prix_passager;
+      const price = newItem.prix_passager;
       const itemDiscount = newItem.discount
-        ? (newItem.price * newItem.discount) / 100
+        ? (newItem.prix_passager * newItem.discount) / 100
         : 0;
       const itemQuantity = newItem.quantity || 1;
 
@@ -42,11 +42,11 @@ const cartSlice = createSlice({
       } else {
         state.items.push({
           id: newItem._id,
-          price: itemPrice,
+          price: price,
           image: newItem.image || "",
           discount: itemDiscount,
           quantity: itemQuantity,
-          totalPrice: itemPrice * itemQuantity,
+          totalPrice: price * itemQuantity,
           name: newItem.productName,
         });
       }

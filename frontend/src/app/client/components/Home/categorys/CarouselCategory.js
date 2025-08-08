@@ -47,12 +47,13 @@ export default function CarouselCategory({ categories }) {
               <Image
                 src={category.image || "/fashion/category/default-category.jpg"}
                 alt={category.name || "Category image"}
-                className="h-auto w-auto object-cover p-4 hover:scale-110 transition duration-500"
-                fill
+                className=" object-cover relative p-4  blur-sm hover:blur-none transition duration-500"
+                width={500}
+                height={500}
               />
 
               {category.name && (
-                <p className="text-text flex items-center capitalize px-6 py-4 mb-2 rounded-lg font-semibold relative hover:bg-rating text-sm hover:scale-105 transition duration-500">
+                <p className="text-gray-500 absolute z-50  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center capitalize px-3 py-2 mb-2 rounded-lg font-semibold  hover:bg-rating text-lg hover:scale-105 transition duration-500">
                   {category.name}
                 </p>
               )}

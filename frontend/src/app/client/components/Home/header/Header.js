@@ -120,11 +120,11 @@ export default function Header() {
             onMouseLeave={() => setIsOpen(false)}>
             <div className="grid grid-cols-12 gap-6 p-8">
               {/* Categories Section */}
-              <div className="col-span-8">
+              <div className="col-span-12">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
                   أختر حسب الفئة
                 </h3>
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-4 gap-6">
                   {categories.length > 0 ? (
                     categories.map((category) => (
                       <div
@@ -163,24 +163,6 @@ export default function Header() {
                   ) : (
                     <p className="text-gray-500 col-span-3">
                       No categories found.
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Featured Products Section */}
-              <div className="col-span-4 bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                  أكثر مبيعا
-                </h3>
-                <div className="grid grid-cols-2 gap-4 items-center">
-                  {recentProducts.length > 0 ? (
-                    recentProducts.map((product) => (
-                      <ProductNavbar product={product} key={product._id} />
-                    ))
-                  ) : (
-                    <p className="text-gray-500">
-                      No featured products available.
                     </p>
                   )}
                 </div>

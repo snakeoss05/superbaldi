@@ -23,6 +23,26 @@ export default function News() {
 
       image: "/fashion/brands/4.png",
     },
+    {
+      id: "67961f3a9eae073",
+
+      image: "/fashion/brands/5.jpg",
+    },
+    {
+      id: "67961f3a9e07fgg3",
+
+      image: "/fashion/brands/6.jpg",
+    },
+    {
+      id: "67961f3a9e07dwe3",
+
+      image: "/fashion/brands/7.png",
+    },
+    {
+      id: "67961f3a9e07517dwe3",
+
+      image: "/fashion/brands/8.png",
+    },
   ];
   return (
     <div className="w-full max-w-screen-xl mx-auto py-8 space-y-8">
